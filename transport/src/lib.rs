@@ -20,9 +20,8 @@ mod web;
 
 #[derive(Debug, Error)]
 pub enum Error {
-    #[cfg(feature = "native")]
     #[error(transparent)]
-    Tungstenite(#[from] tungstenite::Error),
+    Tungstenite(tungstenite::Error),
     #[error("Js error: {0}")]
     Js(String),
 }
@@ -40,6 +39,12 @@ impl From<wasm_bindgen::JsValue> for Error {
             .map(String::from)
             .unwrap_or_else(|_| "unknown".to_string());
         Error::Js(s)
+    }
+}
+
+impl From<tungstenite::Error> for Error {
+    fn from(value: tungstenite::Error) -> Self {
+        Error::Tungstenite(value)
     }
 }
 

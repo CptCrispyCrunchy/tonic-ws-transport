@@ -43,7 +43,7 @@ pub async fn connect(dst: http::Uri) -> Result<super::WsConnection, Error> {
     Ok(super::WsConnection {
         sink: Box::new(messages_sink),
         reader: Box::new(tokio_util::io::StreamReader::new(bytes_stream)),
-        addr: None,
+        peer_addr: None,
     })
 }
 
