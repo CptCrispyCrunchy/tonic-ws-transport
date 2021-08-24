@@ -38,7 +38,7 @@ impl From<WebSocketStream<TcpStream>> for WsConnection {
         }
     }
 }
-
+/*
 #[cfg(feature = "native")]
 impl From<WebSocketStream<TlsStream<TcpStream>>> for WsConnection {
     fn from(ws_stream: WebSocketStream<TlsStream<TcpStream>>) -> Self {
@@ -69,7 +69,7 @@ impl From<WebSocketStream<TlsStream<TcpStream>>> for WsConnection {
             peer_addr,
         }
     }
-}
+}*/
 
 #[derive(Clone)]
 pub struct WsConnectionInfo {}
